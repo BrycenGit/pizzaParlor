@@ -1,11 +1,16 @@
 function Orders() {
-  this.orders = [];
-  this.totalOrders = 0;
+  this.pizzas = [];
+  this.currentId = 0;
 }
 
 Orders.prototype.addOrder = function(pizzaParameter) {
-  this.orders.push(pizzaParameter);
-  this.totalOrders += 1;
+  pizzaParameter.id = this.assignId();
+  this.pizzas.push(pizzaParameter);
+}
+
+Orders.prototype.assignId = function() {
+  this.currentId += 1;
+  return this.currentId;
 }
 
 function Pizza(orderName, toppings, size) {
@@ -44,15 +49,14 @@ Pizza.prototype.addPizzaTotal = function() {
   this.pizzaTotal = this.basePrice + this.toppingCost;
 }
 
-
 function displayOrderDetails(orderToDisplay) {
-  let orderList = $('#order-list');
-  let htmlForPizzaInfo = "";
-  orderToDisplay.orders.forEach(funtion(item)) {
-    htmlForPizzaInfo += "<li>" + "pizza" + "</li>";
-  };
-  orderList.html(htmlForPizzaInfo);
-}
+  let pizzasList = $("ul#order-list");
+  let htmlForOrderInfo = "";
+  orderToDisplay.pizzas.forEach(function(pizza) {
+    htmlForOrderInfo += "<li id=" + pizza.id + ">" + "Pizza #" + pizza.id + ':' + "</li>";
+  });
+  pizzasList.html(htmlForOrderInfo); 
+};
 
 
 let pizzaOrders = new Orders();
@@ -68,9 +72,6 @@ $(document).ready(function() {
 
     console.log(toppingsArray);
     const inputtedSize = $('input[name="size"]:checked').val();
-    $('input#first-name').val('');
-    $('input#toppings').val('');
-    $('input#size').val('');
 
     let pizza = new Pizza(inputtedFirstName, toppingsArray, inputtedSize);
     pizzaOrders.addOrder(pizza);
