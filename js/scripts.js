@@ -1,6 +1,7 @@
 function Orders() {
   this.pizzas = [];
   this.currentId = 0;
+  this.total = 0;
 }
 
 Orders.prototype.addOrder = function(pizzaParameter) {
@@ -11,6 +12,14 @@ Orders.prototype.addOrder = function(pizzaParameter) {
 Orders.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
+}
+
+function addAllPizzas(parameter) {
+  let orderTotal = 0;
+  parameter.pizzas.forEach(function(pizza) {
+    return (orderTotal += pizza.pizzaTotal )
+  })
+  parameter.total = orderTotal;
 }
 
 function Pizza(orderName, toppings, size) {
@@ -53,9 +62,9 @@ function displayOrderDetails(orderToDisplay) {
   let pizzasList = $("ul#order-list");
   let htmlForOrderInfo = "";
   orderToDisplay.pizzas.forEach(function(pizza) {
-    htmlForOrderInfo += "<li id=" + pizza.id + ">" + "Pizza #" + pizza.id + ': ' + (pizza.toppings.join(", ")).replace(/-/g, ' ') + "</li>";
+    htmlForOrderInfo += "<li id=" + pizza.id + ">" +"$" + pizza.pizzaTotal + " " + "Pizza #" + pizza.id + ': ' + (pizza.toppings.join(", ")).replace(/-/g, ' ') + "</li>";
   });
-  pizzasList.html(htmlForOrderInfo); 
+  pizzasList.html(htmlForOrderInfo);
 };
 
 
@@ -82,5 +91,10 @@ $(document).ready(function() {
     console.log(pizza.name);
     displayOrderDetails(pizzaOrders);
     $('.order-name').text(pizza.name);
+    addAllPizzas(pizzaOrders);
+    $('#show').show();
+    $('#total').show();
+    $('.total').text(pizzaOrders.total);
   })
+  $()
 })
