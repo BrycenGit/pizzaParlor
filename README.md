@@ -1,20 +1,22 @@
-# Name
+# Pizza Parlor
 **By: Brycen Bartolome**
-_Version 1, Date_
+_Version 1, 8/28/20_
 
 ## _Description_
+This app allows users to order pizza, add toppings, and see the total.
 
 ## _Languages Used_
 * HTML
 * CSS
 * Bootstrap
 * Markdown
+* Javascript
+* Jquery
 
 ## _Setup_
 * Clone repository to desktop.
 * Open repository.
 * Drag index.html file into an open browser.
-* You can also use the link to gh-pages to see deployed program.
 
 ## _Specs_
 1. User inputs name, toppings, size, and program returns an object:
@@ -29,8 +31,6 @@ output: basecost = 10
 input: sausage
 output: topping cost = 2
 
-## _Repository_
-* [gh-pages](https://brycengit.github.io//)
 
 ### _Liscensing_
  **MIT liscense**
