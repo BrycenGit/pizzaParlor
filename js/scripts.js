@@ -33,14 +33,16 @@ function pizzaSize(pizzaParameter) {
 
 Pizza.prototype.addToppings = function() {
   let toppingCost = 0;
-  
+  if (this.toppings) {
   this.toppings.forEach(function() {
     alert('hi');
     return (toppingCost += 2);
   })
   console.log(toppingCost)
   this.toppingCost = toppingCost
-
+  } else {
+    this.toppingCost = 0;
+  }
 }
 
 
@@ -49,14 +51,14 @@ Pizza.prototype.addPizzaTotal = function() {
 }
 
 let pizzaOrders = new Orders();
-console.log(pizzaOrders);
-let pizza = new Pizza("brycen", ["pepperoni", 'peppers', 'sausage'], "large")
-console.log(pizza);
-pizzaOrders.addOrder(pizza);
-console.log(pizzaOrders);
-console.log(pizza);
-pizza.addToppings();
-console.log(pizza);
+// console.log(pizzaOrders);
+// let pizza = new Pizza("brycen", ["pepperoni", 'peppers', 'sausage'], "large")
+// console.log(pizza);
+// pizzaOrders.addOrder(pizza);
+// console.log(pizzaOrders);
+// console.log(pizza);
+// pizza.addToppings();
+// console.log(pizza);
 
 
 $(document).ready(function() {
@@ -72,6 +74,8 @@ $(document).ready(function() {
 
     let pizza = new Pizza(inputtedFirstName, inputtedToppings, inputtedSize);
     pizzaOrders.addOrder(pizza);
+    pizza.addToppings();
     console.log(pizza)
+
   })
 })
