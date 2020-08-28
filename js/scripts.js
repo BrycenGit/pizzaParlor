@@ -44,6 +44,17 @@ Pizza.prototype.addPizzaTotal = function() {
   this.pizzaTotal = this.basePrice + this.toppingCost;
 }
 
+
+function displayOrderDetails(orderToDisplay) {
+  let orderList = $('#order-list');
+  let htmlForPizzaInfo = "";
+  orderToDisplay.orders.forEach(funtion(item)) {
+    htmlForPizzaInfo += "<li>" + "pizza" + "</li>";
+  };
+  orderList.html(htmlForPizzaInfo);
+}
+
+
 let pizzaOrders = new Orders();
 
 $(document).ready(function() {
@@ -66,5 +77,9 @@ $(document).ready(function() {
     pizza.addToppings();
     pizza.addPizzaTotal();
     console.log(pizza.pizzaTotal);
+    console.log(pizzaOrders);
+    console.log(pizza.name);
+    displayOrderDetails(pizzaOrders);
+    $('.order-name').text(pizza.name);
   })
 })
