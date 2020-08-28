@@ -53,7 +53,7 @@ function displayOrderDetails(orderToDisplay) {
   let pizzasList = $("ul#order-list");
   let htmlForOrderInfo = "";
   orderToDisplay.pizzas.forEach(function(pizza) {
-    htmlForOrderInfo += "<li id=" + pizza.id + ">" + "Pizza #" + pizza.id + ':' + "</li>";
+    htmlForOrderInfo += "<li id=" + pizza.id + ">" + "Pizza #" + pizza.id + ': ' + (pizza.toppings.join(", ")).replace(/-/g, ' ') + "</li>";
   });
   pizzasList.html(htmlForOrderInfo); 
 };
