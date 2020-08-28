@@ -16,6 +16,11 @@ _Version 1, Date_
 * Drag index.html file into an open browser.
 * You can also use the link to gh-pages to see deployed program.
 
+## _Specs_
+1. User inputs name, toppings, size, and program returns an object:
+input: (brycen, peperoni, large);
+output:  
+
 ## _Repository_
 * [gh-pages](https://brycengit.github.io//)
 
