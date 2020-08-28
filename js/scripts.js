@@ -20,13 +20,10 @@ function Pizza(orderName, toppings, size) {
 
 function pizzaSize(pizzaParameter) {
   if (pizzaParameter.size === "large") {
-    // alert("large0!");
     pizzaParameter.basePrice = 12;
   } else if (pizzaParameter.size === "medium") {
-    // alert('medium');
     pizzaParameter.basePrice = 10;
   } else {
-    // alert('small');
     pizzaParameter.basePrice = 8;
   }
 }
@@ -35,40 +32,25 @@ Pizza.prototype.addToppings = function() {
   let toppingCost = 0;
   if (this.toppings) {
     this.toppings.forEach(function() {
-    // alert('hi');
     return (toppingCost += 2);
   })
-    console.log(toppingCost)
     this.toppingCost = toppingCost
   } else {
     this.toppingCost = 0;
   }
 }
 
-
 Pizza.prototype.addPizzaTotal = function() {
   this.pizzaTotal = this.basePrice + this.toppingCost;
 }
 
 let pizzaOrders = new Orders();
-// console.log(pizzaOrders);
-// let pizza = new Pizza("brycen", ["pepperoni", 'peppers', 'sausage'], "large")
-// console.log(pizza);
-// pizzaOrders.addOrder(pizza);
-// console.log(pizzaOrders);
-// console.log(pizza);
-// pizza.addToppings();
-// pizza.addPizzaTotal();
-// console.log(pizza);
-
 
 $(document).ready(function() {
-
   $('form#pizza-order').submit(function(event) {
     event.preventDefault();
     const inputtedFirstName = $('input#first-name').val();
     let toppingsArray = [];
-    // let inputtedToppings = $('input[type=checkbox][name="toppings"]:checked').val();
     $('input[type=checkbox][name="toppings"]:checked').each(function() {
       toppingsArray.push($(this).val());
     })
@@ -84,6 +66,5 @@ $(document).ready(function() {
     pizza.addToppings();
     pizza.addPizzaTotal();
     console.log(pizza.pizzaTotal);
-
   })
 })
