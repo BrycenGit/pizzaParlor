@@ -20,13 +20,13 @@ function Pizza(orderName, toppings, size) {
 
 function pizzaSize(pizzaParameter) {
   if (pizzaParameter.size === "large") {
-    alert("large0!");
+    // alert("large0!");
     pizzaParameter.basePrice = 12;
   } else if (pizzaParameter.size === "medium") {
-    alert('medium');
+    // alert('medium');
     pizzaParameter.basePrice = 10;
   } else {
-    alert('small');
+    // alert('small');
     pizzaParameter.basePrice = 8;
   }
 }
@@ -34,12 +34,12 @@ function pizzaSize(pizzaParameter) {
 Pizza.prototype.addToppings = function() {
   let toppingCost = 0;
   if (this.toppings) {
-  this.toppings.forEach(function() {
-    alert('hi');
+    this.toppings.forEach(function() {
+    // alert('hi');
     return (toppingCost += 2);
   })
-  console.log(toppingCost)
-  this.toppingCost = toppingCost
+    console.log(toppingCost)
+    this.toppingCost = toppingCost
   } else {
     this.toppingCost = 0;
   }
@@ -58,6 +58,7 @@ let pizzaOrders = new Orders();
 // console.log(pizzaOrders);
 // console.log(pizza);
 // pizza.addToppings();
+// pizza.addPizzaTotal();
 // console.log(pizza);
 
 
@@ -66,16 +67,23 @@ $(document).ready(function() {
   $('form#pizza-order').submit(function(event) {
     event.preventDefault();
     const inputtedFirstName = $('input#first-name').val();
-    const inputtedToppings = $('input#toppings').val();
+    let toppingsArray = [];
+    // let inputtedToppings = $('input[type=checkbox][name="toppings"]:checked').val();
+    $('input[type=checkbox][name="toppings"]:checked').each(function() {
+      toppingsArray.push($(this).val());
+    })
+
+    console.log(toppingsArray);
     const inputtedSize = $('input[name="size"]:checked').val();
     $('input#first-name').val('');
     $('input#toppings').val('');
     $('input#size').val('');
 
-    let pizza = new Pizza(inputtedFirstName, inputtedToppings, inputtedSize);
+    let pizza = new Pizza(inputtedFirstName, toppingsArray, inputtedSize);
     pizzaOrders.addOrder(pizza);
     pizza.addToppings();
-    console.log(pizza)
+    pizza.addPizzaTotal();
+    console.log(pizza.pizzaTotal);
 
   })
 })

@@ -12,11 +12,20 @@
       <h1>Pizza Parlor</h1>
       <form id="pizza-order">
         <div class="form-group">
-          <label name="first-name">Name</label>
-          <input id="first-name" class="form-control" type="text">
+          <label name="first-name">What is your name?</label>
+          <input id="first-name" class="form-control" type="text" required>
         </div>
         <div class="form-group">
-          <label name="toppings">toppings</label>
+          <p name="toppings">Choose your toppings:</p>
+
+          <input type="checkbox" id="pepperoni" name="toppings" value="pepperoni">
+          <label for="pepperoni"> Pepperoni</label><br>
+          <input type="checkbox" id="sausage" name="toppings" value="sausage">
+          <label for="sausage"> Sausage</label><br>
+          <input type="checkbox" id="kalua-pork" name="toppings" value="kalua-pork">
+          <label for="kalua-pork"> Kalua pork</label><br>
+          <input type="checkbox" id="jalapeno" name="toppings" value="jalapeno">
+          <label for="jalapeno"> Jalapeno</label><br>
 
         </div>
         <div class="form-group">
