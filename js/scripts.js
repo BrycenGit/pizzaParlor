@@ -15,6 +15,7 @@ function Pizza(orderName, toppings, size) {
   this.basePrice = 0;
   this.toppingCost = 0;
   this.pizzaTotal = 0;
+  pizzaSize(this);
 }
 
 function pizzaSize(pizzaParameter) {
@@ -34,18 +35,36 @@ Pizza.prototype.addToppings = function() {
   this.toppingCost +=2;
 }
 
+
 Pizza.prototype.addPizzaTotal = function() {
   this.pizzaTotal = this.basePrice + this.toppingCost;
 }
 
 let pizzaOrders = new Orders();
-console.log(pizzaOrders);
-let pizza = new Pizza("brycen", ["pepperoni", 'peppers', 'sausage'], "medium")
-console.log(pizza);
-pizzaOrders.addOrder(pizza);
-console.log(pizzaOrders);
-console.log(pizza);
-pizza.addPizzaTotal();
-console.log(pizza);
-pizzaSize(pizza);
-console.log(pizza);
+// console.log(pizzaOrders);
+// let pizza = new Pizza("brycen", ["pepperoni", 'peppers', 'sausage'], "large")
+// console.log(pizza);
+// pizzaOrders.addOrder(pizza);
+// console.log(pizzaOrders);
+// console.log(pizza);
+// pizza.addPizzaTotal();
+// console.log(pizza);
+// // pizzaSize(pizza);
+// console.log(pizza);
+
+$(document).ready(function() {
+
+  $('form#pizza-order').submit(function(event) {
+    event.preventDefault();
+    const inputtedFirstName = $('input#first-name').val();
+    const inputtedToppings = $('input#toppings').val();
+    const inputtedSize = $('input[name="size"]:checked').val();
+    $('input#first-name').val('');
+    $('input#toppings').val('');
+    $('input#size').val('');
+
+    let pizza = new Pizza(inputtedFirstName, inputtedToppings, inputtedSize);
+    pizzaOrders.addOrder(pizza);
+    console.log(pizza)
+  })
+})
