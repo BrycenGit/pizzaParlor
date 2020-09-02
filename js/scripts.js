@@ -1,3 +1,5 @@
+// order logic
+
 function Orders() {
   this.pizzas = [];
   this.currentId = 0;
@@ -52,19 +54,8 @@ function Pizza(orderName, toppings, size) {
   this.basePrice = 0;
   this.toppingCost = 0;
   this.pizzaTotal = 0;
-  // pizzaSize(this);
   this.sizing();
 }
-
-// function pizzaSize(pizzaParameter) {
-//   if (pizzaParameter.size === "large") {
-//     pizzaParameter.basePrice = 12;
-//   } else if (pizzaParameter.size === "medium") {
-//     pizzaParameter.basePrice = 10;
-//   } else {
-//     pizzaParameter.basePrice = 8;
-//   }
-// }
 
 Pizza.prototype.sizing = function () {
   if (this.size === "large") {
@@ -105,9 +96,6 @@ function displayOrderDetails(orderToDisplay) {
   pizzasList.html(htmlForOrderInfo);
 };
 
-
-
-
 function attachPizzaListeners() {
   $("ul#order-list").on("click", "li", function() {
     pizzaOrders.deletePizza(this.id);
@@ -135,10 +123,7 @@ $(document).ready(function() {
     $('input[type=checkbox][name="toppings"]:checked').each(function() {
       toppingsArray.push($(this).val());
     })
-
-    console.log(toppingsArray);
     const inputtedSize = $('input[name="size"]:checked').val();
-
     let pizza = new Pizza(inputtedFirstName, toppingsArray, inputtedSize);
     pizzaOrders.addOrder(pizza);
     pizza.addToppings();
@@ -150,5 +135,4 @@ $(document).ready(function() {
     $('#total').show();
     $('.total').text(pizzaOrders.total);
   })
-  $()
 })
