@@ -14,6 +14,29 @@ Orders.prototype.assignId = function() {
   return this.currentId;
 }
 
+Orders.prototype.findPizza = function(id) {
+  for (let i=0; i< this.pizzas.length; i++) {
+    if (this.pizzas[i]) {
+      if (this.pizzas[i].id == id) {
+        return this.pizzas[i];
+      }
+    }
+  };
+  return false;
+}
+
+Orders.prototype.deletePizza = function(id) {
+  for (let i=0; i< this.pizzas.length; i++) {
+    if (this.pizzas[i]) {
+      if (this.pizzas[i].id == id) {
+        delete this.pizzas[i];
+        return true;
+      }
+    }
+  };
+  return false;
+}
+
 function addAllPizzas(parameter) {
   let orderTotal = 0;
   parameter.pizzas.forEach(function(pizza) {
@@ -70,7 +93,17 @@ function displayOrderDetails(orderToDisplay) {
 
 let pizzaOrders = new Orders();
 
+function attachPizzaListeners() {
+  $("ul#order-list").on("click", "li", function() {
+    pizzaOrders.deletePizza(this.id);
+    displayOrderDetails(pizzaOrders);
+    addAllPizzas(pizzaOrders);
+    $('.total').text(pizzaOrders.total);
+  });
+}
+
 $(document).ready(function() {
+  attachPizzaListeners();
   $('form#pizza-order').submit(function(event) {
     event.preventDefault();
     const inputtedFirstName = $('input#first-name').val();
@@ -86,9 +119,6 @@ $(document).ready(function() {
     pizzaOrders.addOrder(pizza);
     pizza.addToppings();
     pizza.addPizzaTotal();
-    console.log(pizza.pizzaTotal);
-    console.log(pizzaOrders);
-    console.log(pizza.name);
     displayOrderDetails(pizzaOrders);
     $('.order-name').text(pizza.name);
     addAllPizzas(pizzaOrders);
