@@ -45,6 +45,8 @@ function addAllPizzas(parameter) {
   parameter.total = orderTotal;
 }
 
+
+
 function Pizza(orderName, toppings, size) {
   this.name = orderName;
   this.toppings = toppings;
@@ -52,16 +54,27 @@ function Pizza(orderName, toppings, size) {
   this.basePrice = 0;
   this.toppingCost = 0;
   this.pizzaTotal = 0;
-  pizzaSize(this);
+  // pizzaSize(this);
+  this.sizing();
 }
 
-function pizzaSize(pizzaParameter) {
-  if (pizzaParameter.size === "large") {
-    pizzaParameter.basePrice = 12;
-  } else if (pizzaParameter.size === "medium") {
-    pizzaParameter.basePrice = 10;
+// function pizzaSize(pizzaParameter) {
+//   if (pizzaParameter.size === "large") {
+//     pizzaParameter.basePrice = 12;
+//   } else if (pizzaParameter.size === "medium") {
+//     pizzaParameter.basePrice = 10;
+//   } else {
+//     pizzaParameter.basePrice = 8;
+//   }
+// }
+
+Pizza.prototype.sizing = function () {
+  if (this.size === "large") {
+    this.basePrice = 12;
+  } else if (this.size === "medium") {
+    this.basePrice = 10;
   } else {
-    pizzaParameter.basePrice = 8;
+    this.basePrice = 8;
   }
 }
 
@@ -81,6 +94,10 @@ Pizza.prototype.addPizzaTotal = function() {
   this.pizzaTotal = this.basePrice + this.toppingCost;
 }
 
+// UI Logic
+
+let pizzaOrders = new Orders();
+
 function displayOrderDetails(orderToDisplay) {
   let pizzasList = $("ul#order-list");
   let htmlForOrderInfo = "";
@@ -91,7 +108,7 @@ function displayOrderDetails(orderToDisplay) {
 };
 
 
-let pizzaOrders = new Orders();
+
 
 function attachPizzaListeners() {
   $("ul#order-list").on("click", "li", function() {
