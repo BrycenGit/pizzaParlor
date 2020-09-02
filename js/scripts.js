@@ -113,8 +113,6 @@ function attachPizzaListeners() {
   });
 }
 
-
-
 $(document).ready(function() {
   attachPizzaListeners();
   $('form#pizza-order').submit(function(event) {
