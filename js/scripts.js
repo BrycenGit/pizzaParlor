@@ -45,8 +45,6 @@ function addAllPizzas(parameter) {
   parameter.total = orderTotal;
 }
 
-
-
 function Pizza(orderName, toppings, size) {
   this.name = orderName;
   this.toppings = toppings;
@@ -115,8 +113,17 @@ function attachPizzaListeners() {
     pizzaOrders.deletePizza(this.id);
     displayOrderDetails(pizzaOrders);
     addAllPizzas(pizzaOrders);
+    pizzaOrders.addPizzaTotal();
     $('.total').text(pizzaOrders.total);
   });
+}
+
+function addAllPizzas(parameter) {
+  let orderTotal = 0;
+  parameter.pizzas.forEach(function(pizza) {
+    return (orderTotal += pizza.pizzaTotal )
+  })
+  parameter.total = orderTotal;
 }
 
 $(document).ready(function() {
